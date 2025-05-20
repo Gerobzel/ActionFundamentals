@@ -1,28 +1,32 @@
 name: GitHub Actions Demo
- on:
-   push:
-     branches:
-      - main
-     branches-ignore:
-      - 'main/.github/**'
-   pull_request:
-     branches:
-     - main
-   schedule:
-     - cron: "15 6 * * 7"
-   workflow_dispatch:
 
-   jobs:
-    Build:
-     name: Builds the code
-     runs-on: ubuntu-latest
-     steps:
+on:
+  push:
+    branches:
+      - main
+    # 'branches-ignore' is not valid inside 'push'. It must be at the same level
+  pull_request:
+    branches:
+      - main
+  schedule:
+    - cron: "15 6 * * 7"
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Builds the code
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v3
+
       - name: Output GitHub event, branch name, and list files
-      run: |
-        echo "Event that triggered the workflow: $GITHUB_EVENT_NAME"
-        echo "Current branch reference: ${GITHUB_REF#refs/heads/}"
-        echo "Files in the repository:"
-        ls -R
+        run: |
+          echo "Event that triggered the workflow: $GITHUB_EVENT_NAME"
+          echo "Current branch reference: ${GITHUB_REF#refs/heads/}"
+          echo "Files in the repository:"
+          ls -R
+
      
     
       
