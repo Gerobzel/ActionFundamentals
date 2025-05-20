@@ -18,14 +18,15 @@ jobs:
     name: Builds the code
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout the code
-        uses: actions/checkout@v3
+      - run: |
+          echo "🎉 The job was triggered by event: ${{ github.event_name }}"
+          echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ."
 
-      - name: Output GitHub event, branch name, and list files
+      - uses: actions/checkout@v3.3.0
+
+      - name: List files in the repository
         run: |
-          echo "Event that triggered the workflow: $GITHUB_EVENT_NAME"
-          echo "Current branch reference: ${GITHUB_REF#refs/heads/}"
-          echo "Files in the repository:"
+          echo "The repository ${{ github.repository }} contains the following files:"
           tree
 
      
