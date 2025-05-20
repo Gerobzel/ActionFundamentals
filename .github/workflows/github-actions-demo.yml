@@ -4,7 +4,8 @@ on:
   push:
     branches:
       - main
-    # 'branches-ignore' is not valid inside 'push'. It must be at the same level
+    branches-ignore:
+      - main/.github/**
   pull_request:
     branches:
       - main
