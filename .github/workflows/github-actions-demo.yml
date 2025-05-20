@@ -26,7 +26,7 @@ jobs:
           echo "Event that triggered the workflow: $GITHUB_EVENT_NAME"
           echo "Current branch reference: ${GITHUB_REF#refs/heads/}"
           echo "Files in the repository:"
-          ls -R
+          tree
 
      
     
