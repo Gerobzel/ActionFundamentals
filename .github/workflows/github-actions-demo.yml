@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - main
-    branches-ignore:
-      - main/.github/**
+    paths-ignore:
+      - ".github/**"
   pull_request:
     branches:
       - main
