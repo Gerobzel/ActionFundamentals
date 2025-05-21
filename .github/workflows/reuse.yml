@@ -1,0 +1,15 @@
+name: Reuse other workflow
+on: [workflow_dispatch]
+
+jobs:
+  call-wokflow:
+    uses: ./.github/workflows/reusable.yml
+    with:
+      who-to-greet: "@octocat"
+
+  use-output:
+    runs-on: ubuntu-latest
+    needs: call-wokflow
+    steps:
+      - name: Show used time
+        run: echo "The current time is ${{ needs.call-wokflow.outputs.current-time }}"
